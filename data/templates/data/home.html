@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Posts</h1>
+
+{% for post in object_list %}
+  <h5><a href="{% url 'post_details' post.pk %}">  {{ post.title }} - By {{ post.author }}</a> - <small>
+      Posted On: {{ post.post_date }}
+  </small></h5>
+  <p>{{ post.body | slice:"0:50" }}</p>
+  <hr>
+{% endfor %}
+{% endblock content %}
+

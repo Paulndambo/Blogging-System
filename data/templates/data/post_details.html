@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ post.title}}
+{% endblock title %}
+
+{% block content %}
+  <h1>{{ post.title }}</h1>
+<small>{{ post.author }} -  Posted On: {{ post.post_date }}</small><br>
+<hr>
+<p>{{ post.body }}</p>
+
+<br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+{% if user.is_authenticated %}
+<a href="{% url 'update_post' post.pk %}" class="btn btn-primary">Update Post</a>
+<a href="{% url 'delete_post' post.pk %}" class="btn btn-danger">Delete</a>
+{% endif %}
+
+{% endblock content %}

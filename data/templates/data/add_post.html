@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Create New Post
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h3>Add Post</h3>
+<div class="form-group">
+    <form action="" method="post">
+      {% csrf_token %}
+       {{ form.as_p}}
+       <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+</div>
+{% else %}
+<h5>Go home bro, you are not allowed here...😂😂😂😂</h5>
+{% endif %}
+
+{% endblock content %}
