@@ -7,6 +7,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
+{% if user.id == post.author.id %}
 <div class="form-group">
     <form action="" method="post">
       {% csrf_token %}
@@ -14,8 +15,9 @@
        <button type="submit" class="btn btn-primary">Update</button>
   </form>
 </div>
-
+{% endif %}
   {% else %}
   <h3>You are not allowed to edit a post...goodbye</h3>
 {% endif %}
 {% endblock content %}
+

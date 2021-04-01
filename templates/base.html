@@ -55,6 +55,22 @@
           <a class="nav-link" href="{% url 'login' %}">Login</a>
         </li>  
     {% endif %}
+
+        {% if cat_menu %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+
+                  {% for item in cat_menu %}
+                    <a class="dropdown-item" href="{% url 'category' item %}">{{ item }}</a>
+                  {% endfor %}
+                </div>
+          </li>
+          {% else %}
+            <li class="nav-item">
+          <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
+        </li> 
+        {% endif %} 
     </ul>
   </div>
 </nav>

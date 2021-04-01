@@ -4,11 +4,13 @@
   <h1>Posts</h1>
 
 {% for post in object_list %}
-  <h5><a href="{% url 'post_details' post.pk %}">  {{ post.title }} - By {{ post.author }}</a> - <small>
-      Posted On: {{ post.post_date }}
+  <h5><a href="{% url 'post_details' post.pk %}">  {{ post.title }}</a> - <small>
+      Posted On: {{ post.post_date }} -
+      <a href="{% url 'category' post.category %}">{{ post.category | slugify }}</a>
   </small></h5>
-  <p>{{ post.body | slice:"0:50" }}</p>
+  <p>{{ post.body | slice:"0:200" | safe }}</p>
   <hr>
 {% endfor %}
+
 {% endblock content %}
 
