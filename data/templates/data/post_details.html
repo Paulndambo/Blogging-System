@@ -8,6 +8,11 @@
   <h1>{{ post.title }}</h1>
 <small>By {{ post.author }} -  Posted On: {{ post.post_date }} Category : <a href="{% url 'category' post.category %}">{{ post.category | slugify }}</a></small><br>
 <hr>
+{% if post.blog_image %}
+    <img src="{{ post.blog_image.url }}" alt="No Image For This Post">
+{% endif %}
+<br>
+<br>
 <p>{{ post.body | safe}}</p>
 
 <br>

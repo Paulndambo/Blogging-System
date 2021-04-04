@@ -12,6 +12,7 @@
     <form action="" method="post">
       {% csrf_token %}
        {{ form.as_p}}
+       {{ form.media}}
        <button type="submit" class="btn btn-primary">Update</button>
   </form>
 </div>

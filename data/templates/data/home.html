@@ -8,7 +8,7 @@
       Posted On: {{ post.post_date }} -
       <a href="{% url 'category' post.category %}">{{ post.category | slugify }}</a>
   </small></h5>
-  <p>{{ post.body | slice:"0:200" | safe }}</p>
+  {{ post.snippet }}
   <hr>
 {% endfor %}
 
