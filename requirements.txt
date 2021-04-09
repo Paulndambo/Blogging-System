@@ -24,3 +24,6 @@ django-ckeditor==6.0.0
 django-js-asset==1.2.2
 docutils==0.16
 dot2tex==2.11.3
+
+Pillow==8.1.1
+postgres==3.0.0

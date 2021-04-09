@@ -7,12 +7,17 @@ from django.contrib.auth.views import PasswordChangeView
 from . forms import SignupForm, EditProfileForm, PasswordChangingForm
 from data.models import Profile
 # Create your views here.
+class EditProfilePageView(generic.UpdateView):
+    model = Profile
+    fields = ['bio', 'profile_pic', 'website', 'facebook', 'twitter', 'linkedin']
+    template_name = 'registration/edit_user_profile.html'
+    success_url = reverse_lazy('home')
+
 class ShowProfilePageView(DetailView):
     model = Profile
     template_name = "registration/user_profile.html"
 
-    def get_context_data(self, *args, **kwargs):
-        users = Profile.objects.all()
+    def get_context_data(self, *args, **kwargs): 
         context = super(ShowProfilePageView,
                         self).get_context_data(*args, **kwargs)
 

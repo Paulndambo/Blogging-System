@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Edit Profile
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+  
+            <h3>Edit Profile</h3>
+              <div class="form-group">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 {{ form | crispy }}
+                 <button type="submit" class="btn btn-primary">Update Profile </button>
+              </form>
+              </div>
+    {% else %}
+        <h5>Hey..{{ user.username }}, you can't edit this profile😜😜😊😊🤣🤣😂😂😂😂</h5>
+    {% endif %}
+{% else %}
+<h5>You can't edit this profile</h5>
+
+{% endif %}
+
+{% endblock content %}
