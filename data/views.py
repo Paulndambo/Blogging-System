@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DeleteView, DetailView, CreateView, UpdateView
 from django.http import HttpResponseRedirect
-from . models import Post, Category
-from . forms import PostForm, EditPostForm, CategoryForm
+from . models import Post, Category, Comment
+from . forms import PostForm, EditPostForm, CategoryForm, AddCommentForm
 from django.urls import reverse_lazy, reverse
 # Create your views here.
 class HomeView(ListView):
@@ -45,6 +45,19 @@ class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = "data/add_post.html"
+
+
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = AddCommentForm
+    template_name = "data/comment.html"
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    success_url = reverse_lazy('home')
+
 
   
 class UpdatePostView(UpdateView):

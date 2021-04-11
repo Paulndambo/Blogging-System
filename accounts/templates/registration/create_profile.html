@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Create Profile
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+            <h3>Create Your Profile</h3>
+              <div class="form-group">
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 {{ form.as_p }}
+                 <button type="submit" class="btn btn-primary">Create Your Profile </button>
+              </form>
+              </div>
+{% endif %}
+
+{% endblock content %}

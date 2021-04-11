@@ -11,8 +11,7 @@
 {% if post.blog_image %}
     <img src="{{ post.blog_image.url }}" alt="No Image For This Post">
 {% endif %}
-<br>
-<br>
+
 <p>{{ post.body | safe}}</p>
 
 <br>
@@ -25,7 +24,6 @@
   {% endif %}
 {% endif %}
 
-<br><br>
 <hr>
 {% if user.is_authenticated %}
 <form action="{% url 'like_post' post.pk %}" method="POST">
@@ -37,17 +35,13 @@
     <button type="submit", name="post_id", value="{{ post.id }}" class="btn-sm btn-primary">Like</button>
     {% endif %}
   {% else %}
-  <a href="{% url 'login' %}" class="btn-sm btn-warning">Login To Like</a>
-  <a href="{% url 'register' %}" class="btn-sm btn-secondary">Register</a>
+  <a href="{% url 'login' %}">Login To Like</a>
+  | <a href="{% url 'register' %}">Register</a>
 {% endif %}
-<a href="{% url 'home' %}" class="btn-sm btn-secondary">Back</a>
-{{ total_likes }} - Likes
-<hr>
+
+| {{ total_likes }} - Likes
 </form>
-
-<br>
-<br>
-
+<hr>
 <div class="card mb-3">
   <div class="row no-gutters">
     <div class="col-md-4">
@@ -85,6 +79,27 @@
   </div>
 </div>
 
+<h2>Comments</h2>
+<hr>
 
+{% if not post.comments.all %}
+  <h6>No comments yet for this post</h6>
+  <a href="{% url 'comment' post.pk %}">Add Comment</a>
+{% else %}
+<a href="{% url 'comment' post.pk %}">Add Comment</a>
+<br><br>
+  {% for comment in post.comments.all %}
+    <strong>{{ comment.name }} - {{ comment.date_added }}</strong>
+    <br>
+    {{ comment.body }}
+    <br>
+    <br>
+  {% endfor %}
+<a href="{% url 'comment' post.pk %}">Add Comment</a>
+<br><br><br>
+{% endif %}
+<br>
+<br>
+<br>
 
 {% endblock content %}
