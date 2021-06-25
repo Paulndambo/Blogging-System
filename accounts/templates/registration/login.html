@@ -29,8 +29,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>  
 
 <body>
-    <!-- header -->
-  <section class="w3layouts-header py-2">
+<section class="w3layouts-header py-2">
     <div class="container">
         <!-- header -->
         <header>
@@ -50,10 +49,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-lg-auto text-center">
                             <li class="nav-item  mr-3">
-                                <a class="nav-link" href="about.html">about</a>
+                                <a class="nav-link" href="{% url 'about' %}">about</a>
                             </li>
                <li class="nav-item  mr-3">
-                                <a class="nav-link" href="services.html">Services</a>
+                                <a class="nav-link" href="{% url 'services' %}">Services</a>
                             </li>
 
                             {% if user.is_authenticated %}
@@ -77,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </li>
                             {% endif %}
                             <li class="nav-item mr-3">
-                                <a class="nav-link" href="contact.html">contact</a>
+                                <a class="nav-link" href="{% url 'contact' %}">contact</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'search' %}">TRACK SHIPMENT</a>
@@ -91,7 +90,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     </div>
   </section>
-  <!-- //header -->
   <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
             <!--begin::Subheader-->
             <!--begin::Entry-->
