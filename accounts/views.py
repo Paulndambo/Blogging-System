@@ -1,57 +1,58 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
-from . forms import SignupForm, EditProfileForm, PasswordChangingForm, ProfileCreateForm
-from data.models import Profile
+from django.contrib.auth.models import User
+from django.contrib import messages
+
 # Create your views here.
-class CreateProfile(CreateView):
-    model = Profile
-    form_class = ProfileCreateForm
-    template_name = "registration/create_profile.html"
+def register(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
-class EditProfilePageView(generic.UpdateView):
-    model = Profile
-    fields = ['bio', 'profile_pic', 'website', 'facebook', 'twitter', 'linkedin']
-    template_name = 'registration/edit_user_profile.html'
-    success_url = reverse_lazy('home')
-
-class ShowProfilePageView(DetailView):
-    model = Profile
-    template_name = "registration/user_profile.html"
-
-    def get_context_data(self, *args, **kwargs): 
-        context = super(ShowProfilePageView,
-                        self).get_context_data(*args, **kwargs)
-
-        current_user = get_object_or_404(Profile, id=self.kwargs['pk'])
-        context['current_user'] = current_user
-        return context
-
-class UserRegisterView(generic.CreateView):
-    form_class = SignupForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('login')
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                messages.info(request, "Username Taken")
+                return redirect('register')
+            elif User.objects.filter(email=email).exists():
+                messages.info(request, "Email Taken")
+                return redirect('register')
+            else:
+                user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
+                user.save();
+                return redirect('login')
+        else:
+            messages.info(request, "Password Not Matching")
+            return redirect('register')
+        return redirect("home")
+    else:
+        return render(request, 'registration/register.html')
 
 
-class UserEditView(generic.UpdateView):
-    form_class = EditProfileForm
-    template_name = 'registration/edit_profile.html'
-    success_url = reverse_lazy('home')
+def login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
 
-    def get_object(self):
-        return self.request.user
+        user = auth.authenticate(username=username, password=password)
 
-class PasswordsChangeView(PasswordChangeView):
-    #form_class = PasswordChangeForm
-    form_class = PasswordChangingForm
-    success_url = reverse_lazy('password_success')
+        if user is not None:
+            auth.login(request, user)
+            return redirect("home")
+        else:
+            messages.info(request, 'invalid creditials')
+            return redirect('login')
+    else:
+        return render(request, 'registration/login.html')
 
-def password_success(request):
-    return render(request, "registration/password_success.html")
+
+def logout(request):
+    auth.logout(request)
+    return redirect("login")

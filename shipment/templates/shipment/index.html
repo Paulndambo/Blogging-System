@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             {% if user.is_authenticated %}
                        		<li class="nav-item mr-3">
-                                <a class="nav-link" href="contact.html">Logout</a>
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                             </li>
                             {% else %}
                             	
@@ -71,8 +71,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     Account
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="gallery.html">Login</a>
-									 <a class="dropdown-item" href="typo.html">Register</a>
+                                    <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+									 <a class="dropdown-item" href="{% url 'register' %}">Register</a>
                                     
                                    
                                
