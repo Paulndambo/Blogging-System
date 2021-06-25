@@ -40,7 +40,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary">
 
                     <h1>
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/">
                           Shipping 
                             
                         </a>
@@ -52,35 +52,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-lg-auto text-center">
-                            <li class="nav-item active  mr-3">
                                 <a class="nav-link" href="index.html">Home
-                                    <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
                             <li class="nav-item  mr-3">
                                 <a class="nav-link" href="about.html">about</a>
                             </li>
 							 <li class="nav-item  mr-3">
                                 <a class="nav-link" href="services.html">Services</a>
                             </li>
-                            <li class="nav-item dropdown mr-3">
+
+                            {% if user.is_authenticated %}
+                       		<li class="nav-item mr-3">
+                                <a class="nav-link" href="contact.html">Logout</a>
+                            </li>
+                            {% else %}
+                            	
+                                 <li class="nav-item dropdown mr-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                    Pages
+                                    Account
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="gallery.html">Gallery</a>
-									 <a class="dropdown-item" href="typo.html">Typography</a>
+                                    <a class="dropdown-item" href="gallery.html">Login</a>
+									 <a class="dropdown-item" href="typo.html">Register</a>
                                     
                                    
                                
                                 </div>
                             </li>
+                            {% endif %}
                             <li class="nav-item mr-3">
                                 <a class="nav-link" href="contact.html">contact</a>
                             </li>
                             <li class="nav-item">
-                               	<i class="fas fa-phone pr-2"></i>CALL US 1-677-124-44227
+                               	<a href="{% url 'search' %}">TRACK SHIPMENT</a>
                             </li>
                         </ul>
                     </div>
