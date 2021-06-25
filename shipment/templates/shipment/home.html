@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title>Track Shipment</title>
+</head>
+<body>
+    <div class="container my-4 post-wrapper">
+        <!-- Search Start -->
+        <div class="jumbotron border shadow">
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form method="POST" action="{% url 'shipment-tracking' %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="searched" type="text" placeholder="Enter Tracking Number" class="form-control form-control-lg" />
+                            <div class="input-group-append">
+                                <button class="btn btn-dark btn-lg">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+  
+</body>
+</html>

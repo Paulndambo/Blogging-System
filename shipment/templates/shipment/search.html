@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Track Shipment</title>
+            <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="card my-3 post-box">
+            <h5 class="card-header">Your Search Results</h5>
+            <div class="card-body">
+                {% if searched %}
+
+                    <h5>Your search results</h5>
+                    <p>If no results are displayed, please note that your tracking number is invalid, or does not exist</p>
+    
+                    {% for shipment in shipments %}
+                     <h6>Shipment: {{shipment.title}}</h6>
+                     <h6>Country of Origin: {{shipment.origin_country}}
+                        <h6>Destination Country: {{shipment.receiver_country}}
+
+                    {% endfor %}
+
+                {% else %}
+                    <h4>Enter a tracking number please!!!!</h4>
+
+                {% endif %}
+        </div>
+    </div>
+</body>
+</html>
