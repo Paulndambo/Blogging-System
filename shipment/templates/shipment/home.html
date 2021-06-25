@@ -109,8 +109,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 {% else %}
+<div class="container">
+    <div class="row">
+        <h4 class="text-center mt-5">To track a shipment you must be logged in please
 
-    <h3>To be able to track a shipment, you must be logged in!!</h3>
+            <span><a href="{% url 'login' %}" class="btn btn-primary">Login</a></span>
+        </h4>
+        <br>
+        
+
+    </div>
+</div>
 
 {% endif %}
 
