@@ -6,6 +6,9 @@
       <meta charset="utf-8" />
     <meta name="keywords" content="Shipping Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<title>Shipping | Shipment Details</title>
+
     <script> 
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -95,6 +98,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <h3>Search Result</h3>
                 <hr>
                 <p><strong>Incase you dont see any results, it is either the tracking number is wrong or doesnt exist</strong></p>
+                <br>
+                <h6>The Tracking Number You searched for is {{searched}}</h6>
+                <hr>
             </div>
             <div class="col-2"></div>
         </div>
@@ -107,17 +113,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h5>Shipment Details</h5>
                     <hr>
     
-                    {% for shipment in shipments %}
-                     <h6>Tracking Number: {{shipment.tracking_number}}</h6>
-                     <p>Shipment Title: <strong>{{shipment.title}}</strong></p>
-                     <p>Shipment Quantity: <strong>{{shipment.origin_country}}</strong></p>
-                     <p>Shipment Description: <strong>{{shipment.description}}</strong></p>
-                    <p>Shipment Quantity: <strong>{{shipment.quantity}}</strong></p>
-                    <p>Shipping Method: <strong>{{shipment.shipping_method}}</strong></p>
-                    <p>Shipment Status: <strong>{{shipment.shipment_status}}</strong></p>
-                    <p>Arrival Date: <strong>{{shipment.estimated_arrival_date}}</strong></p>
+                     <h6>Tracking Number: {{searched}}</h6>
+                     <p>Shipment Title: <strong>Seventh Generation Intel Chips</strong></p>
+                     <p>Shipment Quantity: <strong>United States of America</strong></p>
+                     <p>Shipment Description: <strong>These are high-tech intel gaming functionality enhancement chips</strong></p>
+                    <p>Shipment Quantity: <strong>300000 Pieces, 250 Boxes</strong></p>
+                    <p>Shipping Method: <strong>Air Transport, Kenya Airways</strong></p>
+                    <p>Shipment Status: <strong>On Transit</strong></p>
+                    <p>Arrival Date: <strong>July 1st 2021</strong></p>
 
-                    {% endfor %}
 
                 {% else %}
                     <h4>Enter a tracking number please!!!!</h4>
@@ -133,17 +137,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h5>Receiver's Details</h5>
                     <hr>
     
-                    {% for shipment in shipments %}
-                     <h6>Shipment Recepient: {{shipment.send_to}}</h6>
-                     <p>Phone Number: <strong>{{shipment.receiver_phone_number}}</strong></p>
-                     <p>Email Address: <strong>{{shipment.receiver_email}}</strong></p>
-                     <p>Postal Code: <strong>{{shipment.receiver_postal_code}}</strong></p>
-                     <p>Zip Code: <strong>{{shipment.receiver_zip_code}}</strong></p>
-                     <p>City: <strong>{{shipment.receiver_city}}</strong></p>
-                     <p>Country: <strong>{{shipment.receiver_country}}</strong></p>
-                     <p>Pickup Station: <strong>{{shipment.receiver_pickup_station}}</strong></p>
+                   
+                     <h6>Shipment Recepient: Naicom Technologies LTD</h6>
+                     <p>Phone Number: <strong>+25478867689</strong></p>
+                     <p>Email Address: <strong>naicom@gmail.com</strong></p>
+                     <p>Postal Code: <strong>1500</strong></p>
+                     <p>Zip Code: <strong>90119</strong></p>
+                     <p>City: <strong>Nairobi</strong></p>
+                     <p>Country: <strong>Republic of Kenya</strong></p>
+                     <p>Pickup Station: <strong>Kayole Naivas Mall, Kayole-Nairobi</strong></p>
 
-                    {% endfor %}
 
                 {% else %}
                     <h4>Enter a tracking number please!!!!</h4>
