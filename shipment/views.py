@@ -16,3 +16,12 @@ def tracking(request):
         return render(request, "shipment/search.html", {'searched': searched, 'shipments': shipments})
     else: 
         return render(request, "shipment/search.html")
+
+def contact(request):
+    return render(request, "shipment/contact.html")
+
+def about(request):
+    return render(request, "shipment/about.html")
+
+def services(request):
+    return render(request, "shipment/services.html")
