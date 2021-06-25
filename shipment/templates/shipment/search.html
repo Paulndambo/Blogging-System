@@ -90,18 +90,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </section>
     <div class="container">
-        <div class="card my-3 post-box">
-            <h5 class="card-header">Your Search Results</h5>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 mt-4 text-center">
+                <h3>Search Result</h3>
+                <hr>
+                <p><strong>Incase you dont see any results, it is either the tracking number is wrong or doesnt exist</strong></p>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class=row>
+            <div class="col-6">
+            <div class="card my-3 post-box">
             <div class="card-body">
                 {% if searched %}
 
-                    <h5>Your search results</h5>
-                    <p>If no results are displayed, please note that your tracking number is invalid, or does not exist</p>
+                    <h5>Shipment Details</h5>
+                    <hr>
     
                     {% for shipment in shipments %}
-                     <h6>Shipment: {{shipment.title}}</h6>
-                     <h6>Country of Origin: {{shipment.origin_country}}
-                        <h6>Destination Country: {{shipment.receiver_country}}
+                     <h6>Tracking Number: {{shipment.tracking_number}}</h6>
+                     <p>Shipment Title: <strong>{{shipment.title}}</strong></p>
+                     <p>Shipment Quantity: <strong>{{shipment.origin_country}}</strong></p>
+                     <p>Shipment Description: <strong>{{shipment.description}}</strong></p>
+                    <p>Shipment Quantity: <strong>{{shipment.quantity}}</strong></p>
+                    <p>Shipping Method: <strong>{{shipment.shipping_method}}</strong></p>
+                    <p>Shipment Status: <strong>{{shipment.shipment_status}}</strong></p>
+                    <p>Arrival Date: <strong>{{shipment.estimated_arrival_date}}</strong></p>
 
                     {% endfor %}
 
@@ -110,6 +125,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 {% endif %}
         </div>
+        </div></div>
+            <div class="col-6">
+                <div class="card my-3 post-box">
+            <div class="card-body">
+                {% if searched %}
+
+                    <h5>Receiver's Details</h5>
+                    <hr>
+    
+                    {% for shipment in shipments %}
+                     <h6>Shipment Recepient: {{shipment.send_to}}</h6>
+                     <p>Phone Number: <strong>{{shipment.receiver_phone_number}}</strong></p>
+                     <p>Email Address: <strong>{{shipment.receiver_email}}</strong></p>
+                     <p>Postal Code: <strong>{{shipment.receiver_postal_code}}</strong></p>
+                     <p>Zip Code: <strong>{{shipment.receiver_zip_code}}</strong></p>
+                     <p>City: <strong>{{shipment.receiver_city}}</strong></p>
+                     <p>Country: <strong>{{shipment.receiver_country}}</strong></p>
+                     <p>Pickup Station: <strong>{{shipment.receiver_pickup_station}}</strong></p>
+
+                    {% endfor %}
+
+                {% else %}
+                    <h4>Enter a tracking number please!!!!</h4>
+
+                {% endif %}
+        </div>
+        </div>
+            </div>
+        
+
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
     <script  src="{% static 'shipment/js/SmoothScroll.min.js' %}"></script>

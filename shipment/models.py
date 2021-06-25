@@ -13,6 +13,7 @@ transportation = (
 	("Sea Transport", "Sea Transport"),
 	("Road Transport", "Road Transport"),
 )
+from django.utils import timezone
 
 class Shipment(models.Model):
 	tracking_number = models.CharField(max_length=200, unique=True)
@@ -31,6 +32,7 @@ class Shipment(models.Model):
 	receiver_pickup_station = models.CharField(max_length=200, null=True)
 	shipment_status = models.CharField(max_length=20, choices=status, null=True)
 	shipping_method = models.CharField(max_length=200, choices=transportation, null=True)
+	estimated_arrival_date = models.DateTimeField(default=timezone.now)
 
 
 	def __str__(self):
